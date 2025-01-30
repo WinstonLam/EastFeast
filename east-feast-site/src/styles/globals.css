@@ -9,9 +9,10 @@
   --second: #EEA300;
 }
 
-body {
+* {
   scroll-behavior: smooth
 }
+
 
 @layer utilities {
   .text-gradient {
@@ -21,8 +22,13 @@ body {
     color: transparent;
   }
 
-  .gradient {
-    color: var(--main);
+
+
+
+  .text-shadow {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
   }
+
+
 
 }

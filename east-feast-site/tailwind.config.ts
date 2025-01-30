@@ -15,6 +15,7 @@ export default {
         second: "var(--second)"
 
       },
+
     },
   },
   plugins: [],
