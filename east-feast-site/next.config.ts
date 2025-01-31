@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   // Set the basePath and assetPrefix only in production
   assetPrefix: isProd ? 'https://WinstonLam.github.io/EastFeast/east-feast-site' : '',
   basePath: isProd ? '/east-feast-site' : '',
+  output: "export"
 };
 
 export default nextConfig
