@@ -22,17 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Move into subfolder
-        run: cd east-feast-site
-        shell: bash
-
       # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"     # or any other LTS version you prefer
           cache: "npm"          # enable npm caching
-
+          cache-dependency-path: "east-feast-site/package-lock.json"
 
       # Step 4: Install dependencies using npm
       - name: Install Dependencies
