@@ -22,6 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Move into subfolder
+        run: cd east-feast-site
+        shell: bash
+
       # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,11 +33,6 @@ jobs:
           node-version: "20"     # or any other LTS version you prefer
           cache: "npm"          # enable npm caching
 
-      # Step 3: (Optional) If your Next.js project is in a subfolder, cd into it
-      #         If your project is at the repo root, remove this step.
-      - name: Move into subfolder
-        run: cd east-feast-site
-        shell: bash
 
       # Step 4: Install dependencies using npm
       - name: Install Dependencies
