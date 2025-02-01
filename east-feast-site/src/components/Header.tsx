@@ -2,6 +2,7 @@
 import { FiAlignRight } from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image'; // Import Image component
+import { withBasePath } from '@/utils/withBasePath';
 
 // import { MenuIcon } from '@heroicons/react/outline';
 
@@ -16,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ sideNavOpen, toggleSidenav }) => {
     <header className="fixed top-0 left-0 w-full bg-background flex justify-center items-center px-6 py-4 shadow-md z-50 rounded-b-lg">
       <div className="flex justify-between items-center max-w-5xl w-full">
         <div className='flex items-center justify-between w-[150px] sm:w-[300px] '>
-          <Image src="/logo.png" alt="main logo" width={50} height={50} className='object-contain rounded-[2rem] cursor-pointer' />
+          <Image src={withBasePath('/logo.png')} alt="main logo" width={50} height={50} className='object-contain rounded-[2rem] cursor-pointer' />
           <Link href="#section1">
             <h1 className="text-xl sm:text-2xl sm:mr-5 cursor-pointer group ">
               <span className="block sm:inline text-gradient transition-all duration-300 group-hover:text-red-700 subpixel-antialiased ">EastFeast</span>

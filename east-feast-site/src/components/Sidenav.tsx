@@ -5,6 +5,9 @@ import { FiX } from 'react-icons/fi';
 import { IoHomeOutline, IoCreateOutline, IoHappyOutline, IoChatboxEllipsesOutline } from "react-icons/io5";
 import { PiBowlFood } from "react-icons/pi";
 
+import Image from 'next/image'; // Import Image component
+import { withBasePath } from '@/utils/withBasePath';
+
 
 
 
@@ -28,55 +31,67 @@ const Sidenav: React.FC<SidenavProps> = ({ sideNavOpen, toggleSidenav }) => {
         className={`fixed top-0 right-0 h-full w-full bg-red-800 text-white z-50 transform transition-transform duration-300 ${sideNavOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
-        <div className="flex justify-between items-center px-4 py-4 ">
+        <div className="flex items-center justify-center px-4 py-4 w-full ">
+          <div className="flex justify-between items-center w-[90%]">
 
+            <div className='flex-5 w-full flex justify-evenly items-center relative -translate-x-8
 
-          <h2 className="text-2xl font-semibold">EastFeast Catering</h2>
-          <button
-            className="md:hidden p-2 relative w-10 h-10"
-            onClick={() => toggleSidenav()}
-            aria-label="Toggle navigation menu"
-          >
-            <div className="w-10 h-10 -translate-y-2">
-              <FiX
-                className={` w-10 h-10 transition-all duration-300 transform stroke-second ${!sideNavOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
-                  }`}
-              />
+'>
+              <Image src={withBasePath('/logo.png')} alt="main logo" width={50} height={50} className='object-contain rounded-[2rem] cursor-pointer' />
+
+              <h2 className="text-2xl font-semibold">EastFeast Catering</h2>
             </div>
-          </button>
 
-          <button onClick={toggleSidenav}>
-            {/* <XIcon className="h-6 w-6" /> */}
-          </button>
+            <div className='flex-3 w-full flex justify-end'>
+              <button
+                className="md:hidden p-2 relative w-10 h-10 left-0"
+                onClick={() => toggleSidenav()}
+                aria-label="Toggle navigation menu"
+              >
+                <div className="w-10 h-10 -translate-y-2">
+                  <FiX
+                    className={` w-10 h-10 transition-all duration-300 transform stroke-second ${!sideNavOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
+                      }`}
+                  />
+                </div>
+              </button>
+            </div>
+
+            <button onClick={toggleSidenav}>
+              {/* <XIcon className="h-6 w-6" /> */}
+            </button>
+          </div>
         </div>
 
-        <nav className="flex flex-col mt-4 space-y-2 relative text-left">
-          <Link href="#section1" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
-            <IoHomeOutline />
-            <span className='ml-5'>Home</span>
-          </Link>
+        <nav className="mt-4 space-y-2 relative text-left w-full flex justify-center">
+          <div className='w-90 flex flex-col justify-center w-[90%]'>
+            <Link href="#section1" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
+              <IoHomeOutline />
+              <span className='ml-5'>Home</span>
+            </Link>
 
-          <Link href="#section2" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
-            <PiBowlFood />
-            <span className='ml-5'>Feasts </span>
-          </Link>
+            <Link href="#section2" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
+              <PiBowlFood />
+              <span className='ml-5'>Feasts </span>
+            </Link>
 
-          <Link href="#section3" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
-            <IoCreateOutline />
-            <span className='ml-5'>Reserve </span>
+            <Link href="#section3" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
+              <IoCreateOutline />
+              <span className='ml-5'>Reserve </span>
 
-          </Link>
+            </Link>
 
-          <Link href="#section4" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
-            <IoHappyOutline />
-            <span className='ml-5'>About Us </span>
+            <Link href="#section4" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
+              <IoHappyOutline />
+              <span className='ml-5'>About Us </span>
 
-          </Link>
-          <Link href="#section5" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
-            <IoChatboxEllipsesOutline />
-            <span className='ml-5'>Contact </span>
+            </Link>
+            <Link href="#section5" className="px-4 py-4 text-2xl hover:bg-red-900 transition-all duration-300 flex items-center " onClick={toggleSidenav}>
+              <IoChatboxEllipsesOutline />
+              <span className='ml-5'>Contact </span>
 
-          </Link>
+            </Link>
+          </div>
 
         </nav>
       </div>
