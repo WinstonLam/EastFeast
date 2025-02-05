@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { withBasePath } from '@/utils/withBasePath';
-import type { VantaFogOptions, VantaFogEffect } from 'vanta/dist/vanta.fog.min';
+import type { VantaFogEffect } from 'vanta/dist/vanta.fog.min';
 
 
 const HeroSection: React.FC = () => {
