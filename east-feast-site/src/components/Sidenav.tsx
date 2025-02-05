@@ -34,12 +34,12 @@ const Sidenav: React.FC<SidenavProps> = ({ sideNavOpen, toggleSidenav }) => {
         <div className="flex items-center justify-center px-4 py-4 w-full ">
           <div className="flex justify-between items-center w-[90%]">
 
-            <div className='flex-5 w-full flex justify-evenly items-center relative -translate-x-8
+            <div className='flex-5 w-full flex justify-evenly items-center relative w-10 
 
 '>
               <Image src={withBasePath('/logo.png')} alt="main logo" width={50} height={50} className='object-contain rounded-[2rem] cursor-pointer' />
 
-              <h2 className="text-2xl font-semibold">EastFeast Catering</h2>
+              <h2 className="text-2xl font-semibold ml-4 sm:ml-0">EastFeast Catering</h2>
             </div>
 
             <div className='flex-3 w-full flex justify-end'>
