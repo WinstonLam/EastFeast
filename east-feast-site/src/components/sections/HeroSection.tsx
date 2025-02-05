@@ -2,12 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { withBasePath } from '@/utils/withBasePath';
+import type { VantaFogOptions, VantaFogEffect } from 'vanta/dist/vanta.fog.min';
+
 
 const HeroSection: React.FC = () => {
     // Create a ref for the element that will host the Vanta effect.
     const vantaRef = useRef<HTMLDivElement>(null);
     // Use a ref to store the Vanta instance so we can destroy it on unmount.
-    const vantaEffect = useRef<any>(null);
+    const vantaEffect = useRef<VantaFogEffect | null>(null);
 
     useEffect(() => {
         if (!vantaEffect.current && vantaRef.current) {
