@@ -50,7 +50,7 @@
   }
 
   .animate-fadeInGlow {
-    animation: fadeInGlow 2s ease-in-out forwards;
+    animation: fadeInGlow 1s ease-in-out forwards;
   }
 
   @keyframes ringFill {
@@ -64,7 +64,7 @@
   }
 
   .animate-ringFill {
-    animation: ringFill 3.5s ease-in-out forwards;
+    animation: ringFill 2.5s ease-in-out forwards;
   }
 
   @keyframes textFadeIn {
@@ -82,8 +82,8 @@
   .animate-textFadeIn {
     /* Ensure the element starts hidden */
     opacity: 0;
-    animation: textFadeIn 2s ease forwards;
-    animation-delay: 1s;
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 0.5s;
   }
 
 

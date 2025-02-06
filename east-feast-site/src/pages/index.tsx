@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   // On mount, check localStorage to determine if the user has already seen the loading screen.
   useEffect(() => {
-    if (localStorage.getItem('hasVisited')) {
+    if (sessionStorage.getItem('hasVisited')) {
       setIsLoading(false);
     } else {
       sessionStorage.setItem('hasVisited', 'true');
