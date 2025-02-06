@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// pages/index.tsx
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Sidenav from '../components/Sidenav';
@@ -14,12 +15,20 @@ const Home: React.FC = () => {
   const [isSidenavOpen, setIsSidenavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // On mount, check localStorage to determine if the user has already seen the loading screen.
+  useEffect(() => {
+    if (localStorage.getItem('hasVisited')) {
+      setIsLoading(false);
+    } else {
+      localStorage.setItem('hasVisited', 'true');
+    }
+  }, []);
 
   const toggleSidenav = () => {
-    setIsSidenavOpen(!isSidenavOpen);
+    setIsSidenavOpen((prev) => !prev);
   };
 
-  // Callback passed to the LoadingScreen to hide it once the animation completes.
+  // Callback passed to LoadingScreen when its fade-out completes.
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
@@ -32,24 +41,20 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {isLoading ? (
-        <LoadingScreen onComplete={handleLoadingComplete} />
-      ) : (
-        <>
-          <Header sideNavOpen={isSidenavOpen} toggleSidenav={toggleSidenav} />
-          <Sidenav sideNavOpen={isSidenavOpen} toggleSidenav={toggleSidenav} />
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-          <main className="pt-20 scroll-smooth">
-            <HeroSection />
-            <ServicesSection />
-            <ReserveSection />
-            <AboutSection />
-            <ContactSection />
-          </main>
+      <Header sideNavOpen={isSidenavOpen} toggleSidenav={toggleSidenav} />
+      <Sidenav sideNavOpen={isSidenavOpen} toggleSidenav={toggleSidenav} />
 
-          <Footer />
-        </>
-      )}
+      <main className="pt-20 scroll-smooth">
+        <HeroSection />
+        <ServicesSection />
+        <ReserveSection />
+        <AboutSection />
+        <ContactSection />
+      </main>
+
+      <Footer />
     </>
   );
 };
