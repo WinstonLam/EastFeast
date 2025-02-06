@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     if (localStorage.getItem('hasVisited')) {
       setIsLoading(false);
     } else {
-      localStorage.setItem('hasVisited', 'true');
+      sessionStorage.setItem('hasVisited', 'true');
     }
   }, []);
 
