@@ -1,15 +1,15 @@
 // pages/index.tsx
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Header from '../components/Header';
-import Sidenav from '../components/Sidenav';
-import Footer from '../components/Footer';
+import Header from '../components/sections/Header';
+import Sidenav from '../components/sections/Sidenav';
+import Footer from '../components/sections/Footer';
 import HeroSection from '../components/sections/HeroSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import ReserveSection from '../components/sections/ReserveSection';
 import AboutSection from '../components/sections/AboutSection';
 import ContactSection from '../components/sections/ContactSection';
-import LoadingScreen from '@/components/LoadingScreen';
+import LoadingScreen from '@/components/sections/LoadingScreen';
 
 const Home: React.FC = () => {
   const [isSidenavOpen, setIsSidenavOpen] = useState(false);

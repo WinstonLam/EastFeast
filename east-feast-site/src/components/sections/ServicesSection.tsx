@@ -6,6 +6,7 @@ const ServicesSection: React.FC = () => (
         <p className="text-lg text-gray-700 max-w-2xl text-center">
             We offer a wide range of catering services to suit your needs.
         </p>
+
     </section>
 );
 

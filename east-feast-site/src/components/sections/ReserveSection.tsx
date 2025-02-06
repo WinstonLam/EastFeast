@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../input';
 
 const ReserveSection: React.FC = () => (
     <section id="section3" className="relative min-h-[500px] md:min-h-[750px] max-h-[1000px] w-full overflow-x-hidden flex 
@@ -9,6 +10,10 @@ const ReserveSection: React.FC = () => (
             <p className="text-lg text-gray-700 max-w-2xl text-center">
                 We offer a wide range of catering services to suit your needs
             </p>
+            <div>
+                <Input label="Type of Feasts" />
+
+            </div>
         </div>
         <div className='flex-5'></div>
     </section>
