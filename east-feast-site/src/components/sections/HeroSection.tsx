@@ -56,8 +56,8 @@ const HeroSection: React.FC = () => {
                         <br /> with <span className="text-gradient">EastFeast</span>
                     </h1>
                     <p
-                        className="text-gray-700 max-w-2xl text-center sm:text-left"
-                        style={{ fontSize: 'clamp(12px, 2.5vw, 20px)' }}
+                        className="text-gray-700 font-semibold sm:font-normal max-w-2xl text-center sm:text-left"
+                        style={{ fontSize: 'clamp(16px, 2.5vw, 20px)' }}
                     >
                         At EastFeast Catering we focus <br />
                         on providing you with the <br />
