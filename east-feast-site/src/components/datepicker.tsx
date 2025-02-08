@@ -28,9 +28,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
         mask: "__/__/____",
         replacement: { _: /\d/ },
     });
-    // Define the custom input using forwardRef with an explicit type instead of `any`
     const CustomInput = forwardRef<HTMLInputElement, React.HTMLProps<HTMLInputElement>>(
-        (props, ref) => {
+        (props) => {
             return (
                 <div
                     className={`relative w-full h-full inline-flex items-center justify-center 

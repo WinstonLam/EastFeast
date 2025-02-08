@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Input from '../input';
 import DatePicker from '../datepicker';
 import CounterInput from '../counterinput';
 import DropdownInput from '../dropdowninput';
@@ -24,7 +23,7 @@ const ReserveSection: React.FC = () => {
         feastDropdown: ''
     });
 
-    const updateField = (field: keyof FormsData, value: any) => {
+    const updateField = <K extends keyof FormsData>(field: K, value: FormsData[K]) => {
         setFormsData((prevData) => ({
             ...prevData,
             [field]: value
