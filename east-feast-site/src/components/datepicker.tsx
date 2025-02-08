@@ -30,7 +30,7 @@ const DatePickerInput: React.FC<DatePickerProps> = ({
         replacement: { _: /\d/ },
     });
     const CustomInput = forwardRef<HTMLInputElement, React.HTMLProps<HTMLInputElement>>(
-        (props, ref) => {
+        (props, _) => {
             return (
                 <div
                     className={`relative w-full h-full inline-flex items-center justify-center 
