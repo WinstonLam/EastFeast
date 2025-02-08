@@ -1,5 +1,5 @@
 // components/Input.tsx
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, forwardRef } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
@@ -9,20 +9,20 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     icon: React.ReactNode;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input = forwardRef<HTMLInputElement, InputProps>(({
     label,
     containerClassName = '',
     inputClassName = '',
     labelClassName = '',
     icon,
     ...inputProps
-}) => {
+}, ref) => {
     return (
         // Outer wrapper with gradient background and slight padding to simulate a border
         <div
             className={`relative min-w-[10rem] h-full inline-flex items-center justify-center 
-          p-[2px] bg-gradient-to-br from-prime to-second rounded-lg 
-          transform hover:scale-105 transition-transform duration-300 ${containerClassName}`}
+        p-[2px] bg-gradient-to-br from-prime to-second rounded-lg 
+        transform hover:scale-105 transition-transform duration-300 ${containerClassName}`}
         >
             {/* Inner container with a solid background */}
             <div className="relative w-full h-full bg-background rounded-lg">
@@ -33,8 +33,9 @@ const Input: React.FC<InputProps> = ({
 
                 <input
                     {...inputProps}
+                    ref={ref}
                     placeholder=" " // Ensures that :placeholder-shown works as intended
-                    className={` h-full py-2 bg-transparent outline-none peer pl-8 ${inputClassName}`}
+                    className={`h-full py-2 bg-transparent outline-none peer pl-8 ${inputClassName}`}
                 />
                 <label
                     className={`absolute left-3 transform -translate-y-1/2 text-prime pointer-events-none cursor-pointer
@@ -48,6 +49,6 @@ const Input: React.FC<InputProps> = ({
             </div>
         </div>
     );
-};
+});
 
 export default Input;

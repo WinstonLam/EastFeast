@@ -96,7 +96,7 @@ const HeroSection: React.FC = () => {
                     alt="wok image"
                     width={300}
                     height={300}
-                    layout="responsive"
+
                     className="cursor-pointer max-w-[800px] min-w-[460px] mr-10 sm:mr-0 relative z-10 w-[50%] flex items-center justify-center -mt-[150px] sm:-mt-0"
                 />
             </div>

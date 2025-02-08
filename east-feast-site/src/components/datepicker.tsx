@@ -1,9 +1,10 @@
 // components/DatePicker.tsx
 import React, { forwardRef } from 'react';
-import ReactDatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { InputProps } from './input';
 import { useMask } from "@react-input/mask";
+
 
 
 export interface DatePickerProps extends Omit<InputProps, "type" | "onChange"> {
@@ -13,7 +14,7 @@ export interface DatePickerProps extends Omit<InputProps, "type" | "onChange"> {
     popperClassName?: string;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({
+const DatePickerInput: React.FC<DatePickerProps> = ({
     label,
     containerClassName = '',
     inputClassName = '',
@@ -29,12 +30,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
         replacement: { _: /\d/ },
     });
     const CustomInput = forwardRef<HTMLInputElement, React.HTMLProps<HTMLInputElement>>(
-        (props) => {
+        (props, ref) => {
             return (
                 <div
                     className={`relative w-full h-full inline-flex items-center justify-center 
             p-[2px] bg-gradient-to-br from-prime to-second rounded-lg 
-            transform hover:scale-105 transition-transform duration-300 ${containerClassName}`}
+             hover:scale-105 transition-transform duration-300 ${containerClassName}`}
                 >
                     <div className="relative w-full h-full bg-background rounded-lg">
                         {icon && (
@@ -45,7 +46,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                         <input
                             {...props}
                             ref={inputRef}
-                            placeholder="dd / mm / yyy" // Ensures :placeholder-shown works correctly.
+                            placeholder={`dd/mm/yyy`} // Ensures :placeholder-shown works correctly.
                             className={`w-full h-full py-2 bg-transparent outline-none peer pl-8 ${inputClassName}`}
                         />
                         <label
@@ -68,15 +69,19 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
     return (
         <div >
-            <ReactDatePicker
+            <DatePicker
                 selected={selected}
+                minDate={new Date()}
                 onChange={onChange}
                 customInput={<CustomInput />}
+
+                dateFormat="dd/MM/yyyy" // Set the date format to dd/MM/yyyy
+
                 calendarClassName={`  custom-datepicker rounded-lg shadow-md duration-300 animate-fadeIn ${calendarClassName}`}
-                popperClassName={`  duration-300 animate-fadeIn ${popperClassName}`}
+                popperClassName={`  duration-300  ${popperClassName}`}
             />
         </div>
     );
 };
 
-export default DatePicker;
+export default DatePickerInput;

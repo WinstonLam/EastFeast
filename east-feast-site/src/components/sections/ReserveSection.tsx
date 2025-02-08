@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import DatePicker from '../datepicker';
+import DatePickerInput from '../datepicker';
 import CounterInput from '../counterinput';
 import DropdownInput from '../dropdowninput';
+import AddressInput from '../adressinput';
 
 // icons
-import { IoCalendarOutline } from "react-icons/io5";
+import { IoCalendarOutline, IoLocationOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { PiBowlFood } from "react-icons/pi";
 
@@ -13,6 +14,7 @@ interface FormsData {
     selectedDate: Date | null;
     people: number | null;
     feastDropdown: string;
+    location: string
 }
 
 const ReserveSection: React.FC = () => {
@@ -20,7 +22,8 @@ const ReserveSection: React.FC = () => {
         feastType: '',
         selectedDate: null,
         people: null,
-        feastDropdown: ''
+        feastDropdown: '',
+        location: ''
     });
 
     const updateField = <K extends keyof FormsData>(field: K, value: FormsData[K]) => {
@@ -51,11 +54,11 @@ const ReserveSection: React.FC = () => {
                     />
 
                     {/* Date picker */}
-                    <DatePicker
+                    <DatePickerInput
                         icon={<IoCalendarOutline />}
                         label="Date of Feast"
                         selected={formsData.selectedDate}
-                        onChange={(date) => updateField('selectedDate', date)}
+                        onChange={(newValue) => updateField('selectedDate', newValue)}
                     />
 
                     {/* Dropdown input for feast type */}
@@ -69,6 +72,14 @@ const ReserveSection: React.FC = () => {
                         ]}
                         value={formsData.feastDropdown}
                         onChange={(newValue) => updateField('feastDropdown', newValue)}
+                    />
+
+                    <AddressInput
+                        icon={<IoLocationOutline />}
+                        label="Place of Feast"
+                        value={formsData.location}
+                        onChange={(e) => updateField('location', e.target.value)}
+
                     />
                 </div>
             </div>
