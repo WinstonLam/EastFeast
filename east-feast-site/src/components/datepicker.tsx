@@ -3,6 +3,8 @@ import React, { forwardRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { InputProps } from './input';
+import { useMask } from "@react-input/mask";
+
 
 export interface DatePickerProps extends Omit<InputProps, "type" | "onChange"> {
     selected: Date | null;
@@ -22,6 +24,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
     calendarClassName = '',
     popperClassName = '',
 }) => {
+    const inputRef = useMask({
+        mask: "__/__/____",
+        replacement: { _: /\d/ },
+    });
     // Define the custom input using forwardRef with an explicit type instead of `any`
     const CustomInput = forwardRef<HTMLInputElement, React.HTMLProps<HTMLInputElement>>(
         (props, ref) => {
@@ -39,8 +45,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
                         )}
                         <input
                             {...props}
-                            ref={ref}
-                            placeholder=" " // Ensures :placeholder-shown works correctly.
+                            ref={inputRef}
+                            placeholder="dd / mm / yyy" // Ensures :placeholder-shown works correctly.
                             className={`w-full h-full py-2 bg-transparent outline-none peer pl-8 ${inputClassName}`}
                         />
                         <label
@@ -62,13 +68,15 @@ const DatePicker: React.FC<DatePickerProps> = ({
     CustomInput.displayName = 'CustomInput';
 
     return (
-        <ReactDatePicker
-            selected={selected}
-            onChange={onChange}
-            customInput={<CustomInput />}
-            calendarClassName={`custom-datepicker rounded-lg shadow-md transition-all duration-300 animate-fadeIn ${calendarClassName}`}
-            popperClassName={`z-50 transition-all duration-300 animate-fadeIn ${popperClassName}`}
-        />
+        <div >
+            <ReactDatePicker
+                selected={selected}
+                onChange={onChange}
+                customInput={<CustomInput />}
+                calendarClassName={`  custom-datepicker rounded-lg shadow-md duration-300 animate-fadeIn ${calendarClassName}`}
+                popperClassName={`  duration-300 animate-fadeIn ${popperClassName}`}
+            />
+        </div>
     );
 };
 

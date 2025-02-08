@@ -20,22 +20,21 @@ const Input: React.FC<InputProps> = ({
     return (
         // Outer wrapper with gradient background and slight padding to simulate a border
         <div
-            className={`relative w-full h-full inline-flex items-center justify-center 
+            className={`relative min-w-[10rem] h-full inline-flex items-center justify-center 
           p-[2px] bg-gradient-to-br from-prime to-second rounded-lg 
           transform hover:scale-105 transition-transform duration-300 ${containerClassName}`}
         >
             {/* Inner container with a solid background */}
             <div className="relative w-full h-full bg-background rounded-lg">
-                {/* Render the icon if it exists */}
-                {icon && (
-                    <div className="absolute inset-y-0 top-0 left-0 flex items-center pl-2 pointer-events-none z-50">
-                        {icon}
-                    </div>
-                )}
+
+                <div className="absolute inset-y-0 top-0 left-0 flex items-center pl-2 pointer-events-none z-50">
+                    {icon}
+                </div>
+
                 <input
                     {...inputProps}
                     placeholder=" " // Ensures that :placeholder-shown works as intended
-                    className={`w-full h-full py-2 bg-transparent outline-none peer pl-8${inputClassName}`}
+                    className={` h-full py-2 bg-transparent outline-none peer pl-8 ${inputClassName}`}
                 />
                 <label
                     className={`absolute left-3 transform -translate-y-1/2 text-prime pointer-events-none cursor-pointer
