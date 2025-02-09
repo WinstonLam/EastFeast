@@ -1,5 +1,7 @@
 // components/DropdownInput.tsx
 import React, { useState, useRef, useEffect } from 'react';
+import { IoWarningOutline } from "react-icons/io5";
+
 
 export interface Option {
     label: string;
@@ -24,6 +26,8 @@ export interface DropdownInputProps
     value: string;
     /** Called when a new value is selected */
     onChange: (value: string) => void;
+    error?: string
+
 }
 
 const DropdownInput: React.FC<DropdownInputProps> = ({
@@ -35,8 +39,11 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
     options,
     value,
     onChange,
+    error,
     ...inputProps
 }) => {
+    const [focused, setFocused] = useState(false)
+
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -55,82 +62,106 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
     // Find the label for the currently selected value.
     const selectedOption = options.find((option) => option.value === value);
 
+    // Handlers to update focus state
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        setFocused(true);
+        if (inputProps.onFocus) {
+            inputProps.onFocus(e);
+        }
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        setFocused(false);
+        if (inputProps.onBlur) {
+            inputProps.onBlur(e);
+        }
+    };
+
     return (
-        <div
-            ref={containerRef}
-            className={`relative inline-flex flex-col ${containerClassName}`}
-        >
-            {/* Input Container */}
+        <div className='flex flex-col justify-around '>
+
             <div
-                onClick={() => setIsOpen(!isOpen)}
-                className="relative min-w-[10rem] h-full inline-flex items-center justify-center 
+                ref={containerRef}
+                className={`relative inline-flex flex-col ${containerClassName}`}
+            >
+                {/* Input Container */}
+                <div
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="relative min-w-[10rem] h-full inline-flex items-center justify-center 
           p-[2px] bg-gradient-to-br from-prime to-second rounded-lg 
           transform hover:scale-105 transition-transform duration-300 cursor-pointer"
-            >
-                <div className="relative w-full h-full bg-background rounded-lg">
-                    {/* Icon */}
-                    <div className="absolute inset-y-0 top-0 left-0 flex items-center pl-2 pointer-events-none z-50">
-                        {icon}
-                    </div>
+                >
+                    <div className="relative w-full h-full bg-background rounded-lg">
+                        {/* Icon */}
+                        <div className="absolute inset-y-0 top-0 left-0 flex items-center pl-2 pointer-events-none z-50">
+                            {icon}
+                        </div>
 
-                    {/* Read-only input displays the selected option label */}
-                    <input
-                        readOnly
-                        value={selectedOption ? selectedOption.label : ''}
-                        placeholder=" " // Ensures that :placeholder-shown works as intended
-                        className={`cursor-pointer h-full py-2 bg-transparent outline-none peer pl-8 pr-10 ${inputClassName}`}
-                        {...inputProps}
-                    />
+                        {/* Read-only input displays the selected option label */}
+                        <input
+                            readOnly
+                            value={selectedOption ? selectedOption.label : ''}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                            placeholder=" " // Ensures that :placeholder-shown works as intended
+                            className={`cursor-pointer h-full py-2 bg-transparent outline-none peer pl-8 pr-10 ${inputClassName}`}
+                            {...inputProps}
+                        />
 
-                    {/* Floating label */}
-                    <label
-                        className={`absolute left-3 transform -translate-y-1/2 text-prime pointer-events-none cursor-pointer
+                        {/* Floating label */}
+                        <label
+                            className={`absolute left-3 transform -translate-y-1/2 text-prime pointer-events-none cursor-pointer
               transition-all duration-300 text-xs
               peer-placeholder-shown:top-[47%] peer-placeholder-shown:text-base peer-placeholder-shown:text-black peer-placeholder-shown:left-6
               peer-focus:top-0 peer-focus:text-xs peer-focus:bg-background peer-focus:text-prime peer-focus:left-3 
               px-1 bg-background z-10 ${labelClassName}`}
-                    >
-                        {label}
-                    </label>
-
-                    {/* Dropdown arrow (triangle/chevron) */}
-                    <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                        <svg
-                            className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'
-                                }`}
-                            viewBox="0 0 20 20"
-                            fill="prime"
                         >
-                            {/* This path draws a chevron (triangle-like arrow) with smooth curves */}
-                            <path
-                                fillRule="evenodd"
-                                d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 
+                            {label}
+                        </label>
+
+                        {/* Dropdown arrow (triangle/chevron) */}
+                        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                            <svg
+                                className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'
+                                    }`}
+                                viewBox="0 0 20 20"
+                                fill="prime"
+                            >
+                                {/* This path draws a chevron (triangle-like arrow) with smooth curves */}
+                                <path
+                                    fillRule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 
                    1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Dropdown Options List */}
+                {/* Dropdown Options List */}
 
-            <div className={`absolute mt-10 w-full bg-background rounded-lg shadow-lg max-h-60 overflow-y-auto z-50
+                <div className={`absolute mt-10 w-full bg-background rounded-lg shadow-lg max-h-60 overflow-y-auto z-50
         transtion-all duration-300 ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`} >
-                {options.map((option) => (
-                    <div
-                        key={option.value}
-                        onClick={() => {
-                            onChange(option.value);
-                            setIsOpen(false);
-                        }}
-                        className="cursor-pointer px-4 py-2 hover:bg-prime transtion-all duration-300"
-                    >
-                        {option.label}
-                    </div>
-                ))}
-            </div>
+                    {options.map((option) => (
+                        <div
+                            key={option.value}
+                            onClick={() => {
+                                onChange(option.value);
+                                setIsOpen(false);
+                            }}
+                            className="cursor-pointer px-4 py-2 hover:bg-prime transtion-all duration-300"
+                        >
+                            {option.label}
+                        </div>
+                    ))}
+                </div>
 
+            </div>
+            <div className={`flex items-start opacity-0 pointer-events-none transition-opacity duration-300 w-full min-w-[8rem]  ${error && !focused && !value ? "opacity-100 pointer-events-auto" : ""}`}>
+                <IoWarningOutline className='mt-[3px] text-red-500' />
+                <span className="text-red-500 font-bold text-sm">{error}</span>
+            </div>
         </div>
     );
 };

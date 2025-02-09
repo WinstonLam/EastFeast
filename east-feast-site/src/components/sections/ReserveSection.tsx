@@ -17,6 +17,16 @@ interface FormsData {
     location: string
 }
 
+interface FormsErrors {
+    feastType: string;
+    selectedDate: string;
+    people: string;
+    feastDropdown: string;
+    location: string
+}
+
+
+
 const ReserveSection: React.FC = () => {
     const [formsData, setFormsData] = useState<FormsData>({
         feastType: '',
@@ -26,12 +36,35 @@ const ReserveSection: React.FC = () => {
         location: ''
     });
 
+    const [formsErrors, setFormsErrors] = useState<FormsErrors>({
+        feastType: '',
+        selectedDate: '',
+        people: '',
+        feastDropdown: '',
+        location: ''
+    });
+
+
     const updateField = <K extends keyof FormsData>(field: K, value: FormsData[K]) => {
         setFormsData((prevData) => ({
             ...prevData,
             [field]: value
         }));
     };
+
+    const handleSubmit = () => {
+        setFormsErrors((prevData) => ({
+            ...prevData,
+            people: "This field is required",
+            location: "This field is required",
+            feastType: "This field is required",
+            selectedDate: "This field is required",
+            feastDropdown: "This field is required",
+
+        }))
+
+
+    }
 
     return (
         <section
@@ -51,6 +84,7 @@ const ReserveSection: React.FC = () => {
                         label="Persons"
                         value={formsData.people}
                         onChange={(newValue) => updateField('people', newValue)}
+                        error={formsErrors.people}
                     />
 
                     {/* Date picker */}
@@ -59,6 +93,8 @@ const ReserveSection: React.FC = () => {
                         label="Date of Feast"
                         selected={formsData.selectedDate}
                         onChange={(newValue) => updateField('selectedDate', newValue)}
+                        error={formsErrors.selectedDate}
+
                     />
 
                     {/* Dropdown input for feast type */}
@@ -72,6 +108,8 @@ const ReserveSection: React.FC = () => {
                         ]}
                         value={formsData.feastDropdown}
                         onChange={(newValue) => updateField('feastDropdown', newValue)}
+                        error={formsErrors.feastDropdown}
+
                     />
 
                     <AddressInput
@@ -79,9 +117,24 @@ const ReserveSection: React.FC = () => {
                         label="Place of Feast"
                         value={formsData.location}
                         onChange={(e) => updateField('location', e.target.value)}
+                        error={formsErrors.location}
+
 
                     />
+                    <button
+                        type="button"
+                        className="relative w-[50%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 transform hover:scale-105 transition-transform duration-300"
+                        onClick={handleSubmit}
+                    >
+                        <span
+                            className="w-full h-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-background dark:text-prime rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent hover:text-background"
+                            style={{ fontSize: 'clamp(12px, 2.5vw, 20px)' }}
+                        >
+                            Check Availability
+                        </span>
+                    </button>
                 </div>
+
             </div>
             <div className="flex-5">{/* Additional content can go here */}</div>
         </section>
