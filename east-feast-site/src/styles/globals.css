@@ -27,8 +27,7 @@
   .custom-datepicker {
     background-color: #FDEFD0 !important;
     fill: #f87171 !important;
-    stroke: #f87171 !important
-      /* red-500 */
+    stroke: #f87171 !important;
   }
 
   .custom-datepicker .react-datepicker__header {
@@ -71,8 +70,9 @@
     color: #D3321D !important;
     fill: #D3321D !important;
 
-    /* Customize the navigation arrows */
   }
+
+
 
 
   .text-shadow {

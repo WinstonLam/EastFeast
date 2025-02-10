@@ -23,7 +23,7 @@ export interface CounterInputProps {
 
 const CounterInput: React.FC<CounterInputProps> = ({
     label,
-    value,
+    value = 0,
     onChange,
     containerClassName = '',
     inputClassName = '',
@@ -77,12 +77,16 @@ const CounterInput: React.FC<CounterInputProps> = ({
 
                     {/* Plus button */}
                     <div
+                        onMouseDown={(e) => e.preventDefault()}
                         onClick={handleIncrement}
-                        className={`absolute cursor-pointer px-2 flex items-center justify-center select-none right-2 top-0 opacity-0 pointer-events-none
-                                group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-300
-            ${value ? "opacity-100 pointer-events-auto" : ""}`}
+                        className={`absolute cursor-pointer px-2 flex items-center justify-center select-none right-1 top-[5px] opacity-0 pointer-events-none
+                                group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-300 
+            ${value !== null && focused ? "opacity-100 pointer-events-auto" : ""}`}
                     >
-                        <span className="bg-background text-gradient font-bold text-2xl">+</span>
+                        <div className='transition-all duration-300 hover:bg-red-300 active:bg-red-500 w-6 h-6 rounded-[5px] flex items-center justify-center translate-y-[1px]'>
+                            <span className=" bg-background text-gradient font-bold text-2xl -translate-y-[2px]">+</span>
+                        </div>
+
                     </div>
 
                     {/* Input field */}
@@ -92,20 +96,30 @@ const CounterInput: React.FC<CounterInputProps> = ({
                         inputMode="numeric"
                         onFocus={() => setFocused(true)}
                         onBlur={() => setFocused(false)}
-                        placeholder=" " // Ensures that :placeholder-shown works as intended
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.currentTarget.blur();
+                            }
+                        }}
+                        placeholder="0"
                         pattern="[0-9]*"
                         maxLength={4}
-                        className={`w-full h-full py-2 pl-3 bg-transparent outline-none text-center peer ${inputClassName}`}
+                        className={`w-full h-full py-2 pl-5 bg-transparent outline-none text-center peer ${inputClassName}`}
                     />
 
 
                     {/* Minus button (decrement): hidden by default, shows when input is focused */}
                     <div
+
+                        onMouseDown={(e) => e.preventDefault()}
                         onClick={handleDecrement}
-                        className={`absolute cursor-pointer px-2 flex items-center justify-center select-none left-6 top-0 opacity-0 pointer-events-none
-                    group-focus-within:pointer-events-auto group-focus-within:opacity-100 transition-opacity duration-300  ${value ? "opacity-100 pointer-events-auto" : ""}`}
+                        className={`absolute cursor-pointer px-2 flex items-center justify-center select-none left-6 top-[6px] opacity-0 pointer-events-none
+                    group-focus-within:pointer-events-auto group-focus-within:opacity-100 transition-all duration-300 ${value !== null && focused ? "opacity-100 pointer-events-auto" : ""}`}
                     >
-                        <span className="bg-background text-gradient font-bold text-2xl">-</span>
+                        <div className='transition-all duration-300 hover:bg-red-300 active:bg-red-500 w-6 h-6 rounded-[5px] flex items-center justify-center translate-y-[2px]'>
+
+                            <span className="bg-background text-gradient font-bold text-2xl -translate-y-[3px]">-</span>
+                        </div>
                     </div>
 
                     {/* Floating label */}

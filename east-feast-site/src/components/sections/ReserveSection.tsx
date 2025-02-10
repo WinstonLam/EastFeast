@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import DatePickerInput from '../datepicker';
-import CounterInput from '../counterinput';
-import DropdownInput from '../dropdowninput';
-import AddressInput from '../adressinput';
+import Image from 'next/image';
+import { withBasePath } from '@/utils/withBasePath';
+import DatePickerInput from '../inputs/datepicker';
+import CounterInput from '../inputs/counterinput';
+import DropdownInput from '../inputs/dropdowninput';
+import AddressInput from '../inputs/adressinput';
 
 // icons
 import { IoCalendarOutline, IoLocationOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { PiBowlFood } from "react-icons/pi";
+
+import Gallery from '@/components/gallery';
+import Gallery2 from '@/components/gallery2';
 
 interface FormsData {
     feastType: string;
@@ -25,13 +30,71 @@ interface FormsErrors {
     location: string
 }
 
+const images = [
+    <Image
+        key="Impression1"
+        src={withBasePath('/Impression1.jpg')}
+        alt="Impression1"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression2"
+        src={withBasePath('/Impression2.jpg')}
+        alt="Impression2"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression3"
+        src={withBasePath('/Impression3.jpg')}
+        alt="Impression3"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression4"
+        src={withBasePath('/Impression4.jpg')}
+        alt="Impression4"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression1"
+        src={withBasePath('/Impression1.jpg')}
+        alt="Impression1"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression2"
+        src={withBasePath('/Impression2.jpg')}
+        alt="Impression2"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression3"
+        src={withBasePath('/Impression3.jpg')}
+        alt="Impression3"
+        width={300}
+        height={300}
+    />,
+    <Image
+        key="Impression4"
+        src={withBasePath('/Impression4.jpg')}
+        alt="Impression4"
+        width={300}
+        height={300}
+    />,
+];
 
 
 const ReserveSection: React.FC = () => {
     const [formsData, setFormsData] = useState<FormsData>({
         feastType: '',
         selectedDate: null,
-        people: null,
+        people: 0,
         feastDropdown: '',
         location: ''
     });
@@ -43,6 +106,8 @@ const ReserveSection: React.FC = () => {
         feastDropdown: '',
         location: ''
     });
+
+
 
 
     const updateField = <K extends keyof FormsData>(field: K, value: FormsData[K]) => {
@@ -136,7 +201,14 @@ const ReserveSection: React.FC = () => {
                 </div>
 
             </div>
-            <div className="flex-5">{/* Additional content can go here */}</div>
+
+            <div className="flex-5 w-[50%] h-full ">
+                <div className="container mx-auto p-4">
+                    {/* <Gallery images={images} /> */}
+                    <Gallery2 images={images} />
+
+                </div>
+            </div>
         </section>
     );
 };
