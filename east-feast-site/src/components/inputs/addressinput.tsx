@@ -5,7 +5,7 @@ import { IoWarningOutline } from "react-icons/io5";
 
 
 export interface AddressInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    label: string;
+    label?: string;
     icon?: React.ReactNode;
     onAddressSelected?: (place: google.maps.places.PlaceResult) => void;
     error?: string

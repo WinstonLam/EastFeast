@@ -42,9 +42,9 @@ const Gallery2 = ({ images }: GalleryProps) => {
             {/* Animated gallery */}
             <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full w-full"
-                animate={{ y: ['0%', '-100%'] }}
+                animate={{ y: ['0%', '-50%'] }}
                 transition={{
-                    duration: 20,
+                    duration: 40,
                     repeat: Infinity,
                     ease: 'linear',
                     repeatType: 'loop',
@@ -55,8 +55,11 @@ const Gallery2 = ({ images }: GalleryProps) => {
                     <motion.div
                         key={`${image.key}-${index}`}
                         className="relative cursor-pointer rounded-2xl overflow-hidden"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
+                        whileHover={{
+                            scale: 1.05,
+                            transition: { duration: 0.3 }
+                        }
+                        }
                         onHoverStart={() => handleHover(true)}
                         onHoverEnd={() => handleHover(false)}
                         onClick={() => handleImageClick(index)}
@@ -64,7 +67,7 @@ const Gallery2 = ({ images }: GalleryProps) => {
                         {cloneElement(image, {
                             ...image.props,
                             className: `${image.props.className} w-full h-full object-cover`,
-                            sizes: "(max-width: 768px) 100vw, 50vw"
+                            sizes: "(max-width: 768px) 100vw, 50vw",
                         })}
                     </motion.div>
                 ))}
