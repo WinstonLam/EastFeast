@@ -144,7 +144,7 @@ const ReserveSection: React.FC = () => {
     return (
         <section
             id="section3"
-            className="min-h-[500px] md:min-h-[750px] max-h-[1000px] w-full overflow-hidden flex 
+            className="min-h-[500px] md:min-h-[750px] md:max-h-[700px] w-full overflow-hidden flex 
                  flex-col md:flex-row justify-evenly items-center bg-background px-4 sm:px-6 "
         >
             <div className="md:hidden w-full h-[230px] ">
@@ -208,7 +208,7 @@ const ReserveSection: React.FC = () => {
                     >
                         <span
                             className="w-full h-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-background dark:text-prime rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent hover:text-background"
-                            style={{ fontSize: 'clamp(12px, 2.5vw, 20px)' }}
+                            style={{ fontSize: 'clamp(12px, 2.5vw, 16)' }}
                         >
                             Check Availability
                         </span>
@@ -222,7 +222,7 @@ const ReserveSection: React.FC = () => {
                 </div>
             </div>
 
-            <div className="md:hidden flex-8 w-full h-full ">
+            <div className="md:hidden w-full h-[230px] ">
                 <div className="container mx-auto p-4 flex justify-center items-center">
                     <Gallery images={bottomImages} />
                 </div>

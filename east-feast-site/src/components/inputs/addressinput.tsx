@@ -8,8 +8,7 @@ export interface AddressInputProps extends React.InputHTMLAttributes<HTMLInputEl
     label?: string;
     icon?: React.ReactNode;
     onAddressSelected?: (place: google.maps.places.PlaceResult) => void;
-    error?: string
-
+    error?: string;
 }
 
 const AddressInput: React.FC<AddressInputProps> = ({
