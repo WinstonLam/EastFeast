@@ -23,36 +23,43 @@ const AboutCard: React.FC<AboutCardProps> = ({
 
     // Clone the image element and add styling
     const styledImage = cloneElement(image, {
-        className: "object-cover rounded-xl shadow-lg -translate-x-[50px]"
+        className: "object-cover rounded-xl shadow-lg w-full h-full"
     });
 
     return (
         <div
             onClick={onClick}
-            className="group relative flex items-center transition-transform duration-300 hover:scale-105 cursor-pointer"
+            className="group relative flex items-center transition-all duration-300 cursor-pointer"
         >
             <div className={`flex w-full items-center ${flexDirection}`}>
                 {/* Info Box */}
-                <div className="p-6">
-                    {outline ? (
-                        <div className="p-1 bg-gradient-to-br from-prime to-second rounded-xl shadow-lg h-[200px] translate-x-[50px]">
-                            <div className="bg-transparent rounded-xl p-6">
+                <div className="p-6 w-[200px] sm:w-[500px]  ">
+                    <div
+                        className={`rounded-xl shadow-lg flex flex-col  h-[175px] bg-gradient-to-br from-prime to-second  transition-all duration-300 
+                             ${outline ? "items-center justify-center" : "items-start justify-left text-white p-6"}`}>
+                        {outline ? (
+                            <div className='bg-white w-[95%] h-[95%] p-4 rounded-xl mr-[3%]'>
+                                <h3 className="text-xl font-bold ">{title}</h3>
+                                <p className="mt-2 text-sm w-[70%]">{desc}</p>
+                            </div>) : (
+                            <>
                                 <h3 className="text-xl font-bold">{title}</h3>
-                                <p className="mt-2 text-sm text-gray-700">{desc}</p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="bg-gradient-to-br from-prime to-second rounded-xl p-6 shadow-lg h-full w-full translate-x-[50px]">
-                            <h3 className="text-xl font-bold text-white">{title}</h3>
-                            <p className="mt-2 text-sm text-white">{desc}</p>
-                        </div>
-                    )}
+                                <p className="mt-2 text-sm w-[50%]">{desc}</p>
+                            </>)}
+
+                    </div>
                 </div>
+
                 {/* Image Container */}
                 <div className={`p-6 ${imageOverlapClass}`}>
-                    <div className='relative w-[300px] h-[300px]'>
+                    <div
+                        className=" absolute top-0 -right-[13%] sm:h-[250px] sm:w-[400px] 
+                                    hover:w-[350px] sm:hover:w-[500px]
+                                    -translate-x-[50px] hover:translate-x-[50px] transition-all duration-300  ">
                         {styledImage}
                     </div>
+
+
                 </div>
             </div>
         </div>

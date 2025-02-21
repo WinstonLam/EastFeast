@@ -29,8 +29,15 @@ const images = [
 
 const AboutSection: React.FC = () => (
     <section id="section4" className="min-h-screen flex flex-col justify-evenly items-center bg-white px-6">
-        <AboutCard image={images[0]} title='Serious Fresh' desc="We seriously care about fresh food, that is why all our food is freshly made based on each feast" />
-
+        <div className='w-[80%] max-w-[750px] h-[300px] sm:h-[500px] flex items-center justify-start'>
+            <AboutCard image={images[0]} title='Serious Fresh' desc="We seriously care about fresh food, that is why all our food is freshly made based on each feast" />
+        </div>
+        <div className='w-[80%] max-w-[750px] h-[500px] flex items-center justify-start'>
+            <AboutCard outline={true} image={images[0]} title='Serious Fresh' desc="We seriously care about fresh food, that is why all our food is freshly made based on each feast" />
+        </div>
+        <div className='w-[80%] max-w-[750px] h-[500px] flex items-center justify-start'>
+            <AboutCard image={images[0]} title='Serious Fresh' desc="We seriously care about fresh food, that is why all our food is freshly made based on each feast" />
+        </div>
     </section>
 );
 
