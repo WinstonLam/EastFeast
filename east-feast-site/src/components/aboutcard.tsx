@@ -29,22 +29,22 @@ const AboutCard: React.FC<AboutCardProps> = ({
     return (
         <div
             onClick={onClick}
-            className="group relative flex items-center transition-all duration-300 cursor-pointer"
+            className="relative flex items-center transition-all duration-300 cursor-pointer"
         >
-            <div className={`flex w-full items-center ${flexDirection}`}>
+            <div className={`group flex w-full items-center -translate-x-[7%] md:-translate-x-[10%] ${flexDirection}`}>
                 {/* Info Box */}
-                <div className="p-6 w-[200px] sm:w-[500px]  ">
+                <div className=" p-5 sm:p-3">
                     <div
-                        className={`rounded-xl shadow-lg flex flex-col  h-[175px] bg-gradient-to-br from-prime to-second  transition-all duration-300 
-                             ${outline ? "items-center justify-center" : "items-start justify-left text-white p-6"}`}>
+                        className={`rounded-xl shadow-lg flex flex-col w-[250px] sm:w-[500px] h-[200px] sm:h-[250px] bg-gradient-to-br from-prime to-second transition-all duration-300 
+                             ${outline ? "items-center justify-center p-1" : "items-start justify-left text-white p-6"}`}>
                         {outline ? (
-                            <div className='bg-white w-[95%] h-[95%] p-4 rounded-xl mr-[3%]'>
+                            <div className='bg-white w-full h-full p-4 rounded-xl'>
                                 <h3 className="text-xl font-bold ">{title}</h3>
-                                <p className="mt-2 text-sm w-[70%]">{desc}</p>
+                                <p className="mt-2 text-sm w-[60%] sm:w-[49%]">{desc}</p>
                             </div>) : (
                             <>
                                 <h3 className="text-xl font-bold">{title}</h3>
-                                <p className="mt-2 text-sm w-[50%]">{desc}</p>
+                                <p className="mt-2 text-sm w-[60%] sm:w-[48%]">{desc}</p>
                             </>)}
 
                     </div>
@@ -53,9 +53,10 @@ const AboutCard: React.FC<AboutCardProps> = ({
                 {/* Image Container */}
                 <div className={`p-6 ${imageOverlapClass}`}>
                     <div
-                        className=" absolute top-0 -right-[13%] sm:h-[250px] sm:w-[400px] 
-                                    hover:w-[350px] sm:hover:w-[500px]
-                                    -translate-x-[50px] hover:translate-x-[50px] transition-all duration-300  ">
+                        className=" absolute top-0 -right-[15%] sm:-right-[10%] md:-right-[20%] 
+                                    h-[150px] w-[175px] sm:h-[250px] sm:w-[350px] md:w-[400px] 
+                                    group-hover:w-[350px] sm:group-hover:w-[400px] md:group-hover:w-[500px]
+                                    transition-all duration-300">
                         {styledImage}
                     </div>
 
