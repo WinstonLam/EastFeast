@@ -27,7 +27,7 @@ interface CustomInputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
-    ({ label, inputClassName, labelClassName, icon, error, focused, onFocus, onBlur, value, ...props }, ref) => {
+    ({ label, inputClassName, labelClassName, icon, error, focused, onFocus, onBlur, value, ...props }) => {
         const inputRef = useMask({
             mask: "__/__/____",
             replacement: { _: /\d/ },
@@ -79,7 +79,6 @@ CustomInput.displayName = 'CustomInput';
 
 const DatePickerInput: React.FC<DatePickerProps> = ({
     label,
-    containerClassName = '',
     inputClassName = '',
     labelClassName = '',
     icon,
@@ -91,11 +90,11 @@ const DatePickerInput: React.FC<DatePickerProps> = ({
 }) => {
     const [focused, setFocused] = useState(false);
 
-    const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocus = useCallback(() => {
         setFocused(true);
     }, []);
 
-    const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    const handleBlur = useCallback(() => {
         setFocused(false);
     }, []);
 

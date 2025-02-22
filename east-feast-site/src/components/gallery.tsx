@@ -1,5 +1,5 @@
 import React, { useState, cloneElement } from 'react';
-import Image, { ImageProps } from 'next/image';
+import { ImageProps } from 'next/image';
 import { IoClose } from "react-icons/io5";
 
 interface GalleryProps {
