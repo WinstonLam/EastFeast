@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { withBasePath } from '@/utils/withBasePath';
 
 import Selector from '@/components/selector';
@@ -18,7 +17,7 @@ const imageData = {
 };
 
 const FeastsSection: React.FC = () => {
-    const [selectedFeast, setSelectedFeast] = useState<number>(0);
+    // const [selectedFeast, setSelectedFeast] = useState<number>(0);
     const [selectedDish, setSelectedDish] = useState<DishData | null>(null);
     const [selectedView, setSelectedView] = useState<number>(0);
 

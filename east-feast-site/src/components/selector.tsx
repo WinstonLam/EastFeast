@@ -25,7 +25,9 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
 
     const handleBoxClick = (index: number) => {
         setBoxNumber(index);
-        onChange && onChange(index);
+        if (onChange) {
+            onChange(index);
+        }
     };
 
     // Calculate the effective width per box
