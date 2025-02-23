@@ -34,7 +34,7 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
     return (
         <div className="w-[90%] h-full max-h-[75px] overflow-auto flex flex-col justify-evenly items-center">
             {/* Boxes Container */}
-            <div className="flex justify-center mx-auto" style={{ width: totalWidth }}>
+            <div className={`flex justify-evenly mx-auto w-full sm:w-${totalWidth} `}>
                 {boxNames.map((boxName, index) => (
                     <div
                         key={boxName}
@@ -44,12 +44,12 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
                         className={`
     
               hover:bg-second/30
-              min-w-[100px] md:min-w-[150px] h-[45px]
+              sm:min-w-[200px] h-[45px]
               flex items-center justify-center
               cursor-pointer transition-all duration-300 ease-in-out
                         ${index === boxNumber ? 'scale-110 text-gradient' : ''}
             `}
-                        style={{ fontSize: 'clamp(16px, 2vw, 20px)' }}
+                        style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
                     >
                         {boxName}
                     </div>
@@ -60,7 +60,7 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
             <div className="relative mx-auto" style={{ width: totalWidth, height: '10px' }}>
                 <div className="bg-prime/30 h-[3px]" />
                 <div
-                    className="absolute top-0 left-0 h-[3px] w-[100px] md:w-[150px] rounded-[2rem] transition-transform duration-300 ease-in-out"
+                    className="absolute top-0 -left-[70px] sm:left-12 md:left-0 h-[3px] w-[100px] md:w-[150px] rounded-[2rem] transition-transform duration-300 ease-in-out"
                     style={{
                         transform: `translateX(${boxNumber * boxWidth}px)`,
                         background: 'var(--main)',
