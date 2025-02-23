@@ -5,7 +5,7 @@ import Header from '../components/sections/Header';
 import Sidenav from '../components/sections/Sidenav';
 import Footer from '../components/sections/Footer';
 import HeroSection from '../components/sections/HeroSection';
-import ServicesSection from '../components/sections/ServicesSection';
+import FeastsSection from '../components/sections/FeastsSection';
 import ReserveSection from '../components/sections/ReserveSection';
 import AboutSection from '../components/sections/AboutSection';
 import ContactSection from '../components/sections/ContactSection';
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
       <main className="pt-20 scroll-smooth">
         <HeroSection />
-        <ServicesSection />
+        <FeastsSection />
         <ReserveSection />
         <AboutSection />
         <ContactSection />
