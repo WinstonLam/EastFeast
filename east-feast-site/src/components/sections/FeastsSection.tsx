@@ -51,7 +51,7 @@ const FeastsSection: React.FC = () => {
             </div>
 
             <p className="text-2xl mb-4 text-center">Checkout the <span className='text-prime'>Overview</span> of the entire feast<br /> or view the <span className='text-second'>Dishes</span> in detail</p>
-            <div className="flex justify-evenly items-center w-[70%] sm:w-[50%] max-w-[750px] p-6">
+            <div className="flex justify-evenly items-center w-full sm:w-[50%] max-w-[750px] p-6">
                 <button
                     type="button"
                     className="text-white w-[25%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] bg-gradient-to-br from-prime to-second hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 transform hover:scale-105 transition-transform duration-300"
@@ -87,9 +87,9 @@ const FeastsSection: React.FC = () => {
             {/* Grid of Dish Cards */}
             {selectedView == 1 && (
                 <>
-                    <div className="grid grid-cols-3 max-w-[1050px] gap-6 w-full overflow-y-scroll overflow-x-hidden">
-                        {dishes
-                            .map((dish) => (
+                    <div className="max-w-[1050px] w-full h-[600px] mb-10 overflow-hidden bg-gradient-to-br from-prime to-second rounded-2xl p-1 inset-shadow-sm">
+                        <div className="grid grid-cols-3 gap-6 h-full overflow-y-auto bg-white rounded-2xl inset-shadow-sm p-3">
+                            {dishes.map((dish) => (
                                 <DishCard
                                     key={dish.id}
                                     image={dish.image}
@@ -98,8 +98,10 @@ const FeastsSection: React.FC = () => {
                                     onClick={() => setSelectedDish(dish)}
                                 />
                             ))}
+                        </div>
                     </div>
-                </>)}
+                </>
+            )}
 
             {/* Modal Overlay for Expanded Dish */}
             {selectedDish && (
@@ -108,7 +110,7 @@ const FeastsSection: React.FC = () => {
                     onClick={() => setSelectedDish(null)} // close when clicking outside
                 >
                     <div
-                        className="relative p-4 w-[750px] h-[400px]"
+                        className="relative p-4 w-[500px] md:w-[650px] h-[400px]"
                         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
                     >
                         <ExpandedDishCard dish={selectedDish} onClose={() => setSelectedDish(null)} />

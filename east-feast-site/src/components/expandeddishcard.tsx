@@ -20,7 +20,7 @@ const ExpandedDishCard: React.FC<ExpandedDishCardProps> = ({ dish, onClose }) =>
 
             <button
                 onClick={onClose}
-                className="absolute top-4 left-4 z-50 p-2 bg-second rounded-full shadow-lg hover:bg-second text-white transition-all duration-300"
+                className="absolute top-4 left-4 z-50 p-2 bg-second rounded-full shadow-lg hover:bg-prime text-white transition-all duration-300"
             >
                 <IoClose className="w-8 h-8" />
             </button>
@@ -33,7 +33,7 @@ const ExpandedDishCard: React.FC<ExpandedDishCardProps> = ({ dish, onClose }) =>
                     <p className="mt-2 text-lg ">{dish.desc}</p>
                     {/* You can add more detailed info here */}
                 </div>
-                <div className="absolute overflow-hidden rounded-xl drop-shadow-lg top-7 right-0 scale-[1.7] group-hover:scale-[2.0] transition-all duration-300">
+                <div className="absolute w-[200px] md:w-[250px] overflow-hidden rounded-xl drop-shadow-lg top-7  right-2 sm:right-0 scale-[1.7] group-focus:scale-[2.0] transition-all duration-300">
                     {dish.image}
                 </div>
             </div>

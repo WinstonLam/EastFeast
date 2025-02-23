@@ -22,7 +22,7 @@ const DishCard: React.FC<DishCardProps> = ({ image, title, desc, onClick }) => {
 
             {/* Card Content */}
             <div
-                className="bg-background rounded-2xl shadow-lg w-full max-w-[280px] h-[300px] -mt-[50%] pt-12 px-4 pb-4 
+                className="bg-background rounded-2xl shadow-lg w-full max-w-[280px] h-[120px] sm:h-[250px] md:h-[300px] -mt-[40%] sm:-mt-[40%] md:-mt-[50%] pt-12 px-4 pb-4 
                 flex flex-col items-center justify-center 
                 transition-all duration-300
                    group-hover:bg-prime"
@@ -31,7 +31,7 @@ const DishCard: React.FC<DishCardProps> = ({ image, title, desc, onClick }) => {
                     <h3 className="group-hover:text-background text-lg font-bold transition-all duration-300">
                         {title}
                     </h3>
-                    <p className="group-hover:text-background text-sm text-gray-600  transition-all duration-300">
+                    <p className="group-hover:text-background text-sm text-gray-600 clamp(12px, 1.5vw, 20px) transition-all duration-300 truncate sm:overflow-visible sm:whitespace-normal">
                         {desc}
                     </p>
                 </div>
