@@ -26,7 +26,9 @@ const FeastsSection: React.FC = () => {
     const dishes: DishData[] = Array.from({ length: 4 }, (_, index) => ({
         id: index + 1,
         title: `Dish ${index + 1}`,
-        desc: `A delicious dish number ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+        desc: `A delicious dish number ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
 
         image: (
             <Image
@@ -43,18 +45,22 @@ const FeastsSection: React.FC = () => {
     return (
         <section
             id="section2"
-            className="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-6 relative min-h-[500px] md:min-h-[750px] max-h-[1000px]"
+            className=" flex flex-col justify-center items-center bg-gray-100 px-6 relative 
+            min-h-[500px] md:min-h-[750px] max-h-[1000px]"
         >
             {/* Feast Selector */}
             <div className="w-full flex justify-center items-center mb-8">
                 <Selector boxNames={['Silk Feast', 'Pearl Feast', 'Jade Feast']} />
             </div>
 
-            <p className="text-2xl mb-4 text-center">Checkout the <span className='text-prime'>Overview</span> of the entire feast<br /> or view the <span className='text-second'>Dishes</span> in detail</p>
+            <p className="text-2xl mb-4 text-center">Checkout the <span className='text-prime'>
+                Overview</span> of the entire feast<br /> or view the <span className='text-second'>Dishes</span> in detail</p>
             <div className="flex justify-evenly items-center w-full sm:w-[50%] max-w-[750px] p-6">
                 <button
                     type="button"
-                    className="text-white w-[25%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] bg-gradient-to-br from-prime to-second hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 transform hover:scale-105 transition-transform duration-300"
+                    className="text-white w-[25%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] 
+                    bg-gradient-to-br from-prime to-second hover:bg-gradient-to-bl font-medium 
+                    rounded-lg text-sm px-5 py-2.5 transform hover:scale-105 transition-transform duration-300"
                     style={{ fontSize: 'clamp(12px, 2.5vw, 20px)' }}
                     onClick={() => setSelectedView(0)}
                 >
@@ -64,11 +70,15 @@ const FeastsSection: React.FC = () => {
 
                 <button
                     type="button"
-                    className="relative w-[25%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 transform hover:scale-105 transition-transform duration-300"
+                    className="relative w-[25%] min-w-[100px] sm:min-w-[120px] sm:h-[50px] inline-flex items-center 
+                    justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group 
+                    bg-gradient-to-br from-pink-500 to-orange-400 hover:text-white focus:ring-4 focus:outline-none 
+                    focus:ring-pink-200 dark:focus:ring-pink-800 transform hover:scale-105 transition-transform duration-300"
                     onClick={() => setSelectedView(1)}
                 >
                     <span
-                        className="w-full h-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-white dark:text-prime rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent"
+                        className="w-full h-full relative px-5 py-2.5 transition-all ease-in duration-75 
+                        bg-white dark:bg-white dark:text-prime rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent"
                         style={{ fontSize: 'clamp(12px, 2.5vw, 20px)' }}
                     >
                         Dishes
@@ -76,32 +86,37 @@ const FeastsSection: React.FC = () => {
                 </button>
 
             </div>
+            <div className='h-[650px] max-w-[1050px]'>
 
-            {/* Overview of Menu */}
-            {selectedView == 0 && (
-                <>
+                {/* Overview of Menu */}
+                {selectedView == 0 && (
+                    <>
 
-                </>)}
+                    </>)}
 
 
-            {/* Grid of Dish Cards */}
-            {selectedView == 1 && (
-                <>
-                    <div className="max-w-[1050px] w-full h-[600px] mb-10 overflow-hidden bg-gradient-to-br from-prime to-second rounded-2xl p-1 inset-shadow-sm">
-                        <div className="grid grid-cols-3 gap-6 h-full overflow-y-auto bg-white rounded-2xl inset-shadow-sm p-3">
-                            {dishes.map((dish) => (
-                                <DishCard
-                                    key={dish.id}
-                                    image={dish.image}
-                                    title={dish.title}
-                                    desc={dish.desc}
-                                    onClick={() => setSelectedDish(dish)}
-                                />
-                            ))}
-                        </div>
+                {/* Grid of Dish Cards */}
+
+
+                <div className={`w-full h-[600px] mb-10 overflow-hidden bg-gradient-to-br from-prime to-second 
+                rounded-2xl p-1 inset-shadow-sm transition-all duration-300
+                ${selectedView == 1 ? "pointer-events-auto opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-4"}`}>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 md:gap-x-20 md:gap-y-10
+                     h-full overflow-y-auto bg-white rounded-2xl inset-shadow-sm p-3">
+                        {dishes.map((dish) => (
+                            <DishCard
+                                key={dish.id}
+                                image={dish.image}
+                                title={dish.title}
+                                desc={dish.desc}
+                                onClick={() => setSelectedDish(dish)}
+                            />
+                        ))}
                     </div>
-                </>
-            )}
+                </div>
+
+
+            </div>
 
             {/* Modal Overlay for Expanded Dish */}
             {selectedDish && (

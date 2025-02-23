@@ -7,47 +7,44 @@ interface SelectorProps {
 
 const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
     const [boxNumber, setBoxNumber] = useState<number>(0);
-    const [boxWidth, setBoxWidth] = useState<number>(0);
-    const boxRef = useRef<HTMLDivElement>(null);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const updateWidth = () => {
-        if (boxRef.current) {
-            setBoxWidth(boxRef.current.offsetWidth);
+    // Update the container width on mount and resize
+    const updateContainerWidth = () => {
+        if (containerRef.current) {
+            setContainerWidth(containerRef.current.offsetWidth);
         }
     };
 
     useEffect(() => {
-        updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return () => window.removeEventListener('resize', updateWidth);
+        updateContainerWidth();
+        window.addEventListener('resize', updateContainerWidth);
+        return () => window.removeEventListener('resize', updateContainerWidth);
     }, []);
 
     const handleBoxClick = (index: number) => {
         setBoxNumber(index);
-        if (onChange) {
-            onChange(index);
-        }
+        onChange && onChange(index);
     };
 
-    const totalWidth = boxNames.length * boxWidth;
+    // Calculate the effective width per box
+    const effectiveBoxWidth = boxNames.length ? containerWidth / boxNames.length : 0;
 
     return (
-        <div className="w-[90%] h-full max-h-[75px] overflow-auto flex flex-col justify-evenly items-center">
+        <div className="w-[90%] h-full max-h-[75px] max-w-[750px] flex flex-col justify-evenly items-center">
             {/* Boxes Container */}
-            <div className={`flex justify-evenly mx-auto w-full sm:w-${totalWidth} `}>
+            <div ref={containerRef} className="flex justify-evenly w-full">
                 {boxNames.map((boxName, index) => (
                     <div
                         key={boxName}
                         onClick={() => handleBoxClick(index)}
-                        // Attach ref only to the first box to measure its width
-                        ref={index === 0 ? boxRef : null}
                         className={`
-    
               hover:bg-second/30
               sm:min-w-[200px] h-[45px]
               flex items-center justify-center
               cursor-pointer transition-all duration-300 ease-in-out
-                        ${index === boxNumber ? 'scale-110 text-gradient' : ''}
+              ${index === boxNumber ? 'scale-110 text-gradient' : ''}
             `}
                         style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
                     >
@@ -57,12 +54,13 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
             </div>
 
             {/* Selection Bar Container */}
-            <div className="relative mx-auto" style={{ width: totalWidth, height: '10px' }}>
+            <div className="relative mx-auto" style={{ width: containerWidth, height: '10px' }}>
                 <div className="bg-prime/30 h-[3px]" />
                 <div
-                    className="absolute top-0 -left-[70px] sm:left-12 md:left-0 h-[3px] w-[100px] md:w-[150px] rounded-[2rem] transition-transform duration-300 ease-in-out"
+                    className="absolute top-0 left-0 h-[3px] rounded-[2rem] transition-transform duration-300 ease-in-out"
                     style={{
-                        transform: `translateX(${boxNumber * boxWidth}px)`,
+                        width: effectiveBoxWidth,
+                        transform: `translateX(${boxNumber * effectiveBoxWidth}px)`,
                         background: 'var(--main)',
                     }}
                 />
