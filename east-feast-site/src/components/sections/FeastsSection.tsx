@@ -14,12 +14,32 @@ const imageData = {
         width: 300,
         height: 300,
     },
+    1: {
+        src: withBasePath('/Impression1.jpg'),
+        alt: 'overview1',
+        width: 500,
+        height: 500,
+    },
+    2: {
+        src: withBasePath('/Impression2.jpg'),
+        alt: 'overview2',
+        width: 500,
+        height: 500,
+    },
+    3: {
+        src: withBasePath('/Impression3.jpg'),
+        alt: 'overview3',
+        width: 500,
+        height: 500,
+    }
+
 };
 
 const FeastsSection: React.FC = () => {
     // const [selectedFeast, setSelectedFeast] = useState<number>(0);
     const [selectedDish, setSelectedDish] = useState<DishData | null>(null);
     const [selectedView, setSelectedView] = useState<number>(0);
+    const [selectedFeast, setSelectedFeast] = useState<number>(0);
 
     // Dummy data for 4 dishes. In a real app, change this based on the selected feast.
     const dishes: DishData[] = Array.from({ length: 4 }, (_, index) => ({
@@ -49,7 +69,7 @@ const FeastsSection: React.FC = () => {
         >
             {/* Feast Selector */}
             <div className="w-full flex justify-center items-center mb-8">
-                <Selector boxNames={['Silk Feast', 'Pearl Feast', 'Jade Feast']} />
+                <Selector boxNames={['Silk Feast', 'Pearl Feast', 'Jade Feast']} onChange={setSelectedFeast} />
             </div>
 
             <p className="text-2xl mb-4 text-center">Checkout the <span className='text-prime'>
@@ -85,13 +105,45 @@ const FeastsSection: React.FC = () => {
                 </button>
 
             </div>
-            <div className='h-[650px] max-w-[1050px]'>
+            <div className='h-[650px] max-w-[1050px] flex items-center justify-center'>
 
                 {/* Overview of Menu */}
-                {selectedView == 0 && (
-                    <>
 
-                    </>)}
+                <div className={`absolute w-[100%] flex items-end justify-center transition-all duration-300
+            
+                 ${selectedView == 0 ? "pointer-events-auto opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-4 "}`}>
+                    <div className={`absolute flex items-center justify-center transition-all duration-300
+                            ${selectedFeast === 0 ? "pointer-events-all opacity-100 " : "pointer-events-none opacity-0 "}`}>
+                        <Image
+                            src={imageData[1].src}
+                            alt={imageData[1].alt}
+                            width={imageData[1].width}
+                            height={imageData[1].height}
+                            className='rounded-3xl shadow-lg'
+                        />
+                    </div>
+                    <div className={`absolute flex items-center justify-center transition-all duration-300
+                            ${selectedFeast === 1 ? "pointer-events-all opacity-100" : "pointer-events-none opacity-0"}`}>
+                        <Image
+                            src={imageData[2].src}
+                            alt={imageData[2].alt}
+                            width={imageData[2].width}
+                            height={imageData[2].height}
+                            className='rounded-3xl shadow-lg'
+                        />
+                    </div>
+                    <div className={`absolute flex items-center justify-center transition-all duration-300
+                            ${selectedFeast === 2 ? "pointer-events-all opacity-100" : "pointer-events-none opacity-0"}`}>
+                        <Image
+                            src={imageData[3].src}
+                            alt={imageData[3].alt}
+                            width={imageData[3].width}
+                            height={imageData[3].height}
+                            className='rounded-3xl shadow-lg'
+                        />
+                    </div>
+
+                </div>
 
 
                 {/* Grid of Dish Cards */}
