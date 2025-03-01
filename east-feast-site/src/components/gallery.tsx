@@ -38,22 +38,6 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
         </div>
     );
 
-    // Similar styling for the modal image.
-    const renderModalImage = (img: React.ReactElement) => (
-        <div className="relative w-full h-full">
-            <button
-                onClick={closeModal}
-                className="absolute top-4 left-4 z-50 p-2 bg-white/80 rounded-full shadow-lg hover:bg-prime text-white transition-all duration-300"
-            >
-                <IoClose className="w-8 h-8" />
-            </button>
-            {cloneElement(img as React.ReactElement<ImageProps>, {
-                className: "w-full h-full object-cover rounded-2xl",
-                sizes: "(max-width: 768px) 100vw, 50vw",
-            })}
-        </div>
-    );
-
     return (
         <div className="relative">
             {/* Desktop Gallery: Two columns scrolling vertically */}

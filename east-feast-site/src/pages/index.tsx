@@ -33,11 +33,6 @@ const Home: React.FC = () => {
     setIsLoading(false);
   };
 
-  // Assuming your theme uses bg-background for the gray sections
-  // and white for the alternate sections
-  const bgColor = 'bg-background'; // Your gray background color
-  const bgWhite = 'white'; // White background color
-
   return (
     <>
       <Head>
