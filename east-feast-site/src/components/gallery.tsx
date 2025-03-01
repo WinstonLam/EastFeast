@@ -1,6 +1,5 @@
 import React, { useState, cloneElement } from 'react';
 import { ImageProps } from 'next/image';
-import { IoClose } from "react-icons/io5";
 
 import ImageModal from '@/components/imagemodel';
 
