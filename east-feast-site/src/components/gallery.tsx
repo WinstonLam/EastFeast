@@ -2,6 +2,8 @@ import React, { useState, cloneElement } from 'react';
 import { ImageProps } from 'next/image';
 import { IoClose } from "react-icons/io5";
 
+import ImageModal from '@/components/imagemodel';
+
 interface GalleryProps {
     images: React.ReactElement[];
 }
@@ -108,17 +110,8 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
 
             {/* Modal for enlarged image */}
             {enlargedImage && (
-                <div
-                    className="fixed inset-0 flex items-center justify-center z-50"
-                    onClick={closeModal}
-                >
-                    {/* Backdrop */}
-                    <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
-                    {/* Modal content */}
-                    <div className="relative w-full h-96 max-w-3xl transform transition-transform duration-300 scale-100 rounded-lg overflow-hidden">
-                        {renderModalImage(enlargedImage)}
-                    </div>
-                </div>
+                <ImageModal image={enlargedImage} onClose={closeModal} />
+
             )}
         </div>
     );

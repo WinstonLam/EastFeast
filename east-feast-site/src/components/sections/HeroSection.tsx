@@ -103,7 +103,7 @@ const HeroSection: React.FC = () => {
             {/* Overlay div for the Vanta effect */}
             <div
                 ref={vantaRef}
-                className="absolute inset-0 pointer-events-none z-0"
+                className="absolute inset-0 pointer-events-none z-0 h-[110%]"
             ></div>
         </section>
     );

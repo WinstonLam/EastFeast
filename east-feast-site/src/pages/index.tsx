@@ -33,6 +33,11 @@ const Home: React.FC = () => {
     setIsLoading(false);
   };
 
+  // Assuming your theme uses bg-background for the gray sections
+  // and white for the alternate sections
+  const bgColor = 'bg-background'; // Your gray background color
+  const bgWhite = 'white'; // White background color
+
   return (
     <>
       <Head>
@@ -49,7 +54,9 @@ const Home: React.FC = () => {
       <main className="pt-20 scroll-smooth">
         <HeroSection />
         <FeastsSection />
+        <div className=" w-full h-[30px] left-0 pointer-events-none  bg-gradient-to-t from-background to-white" />
         <ReserveSection />
+        <div className=" w-full h-[30px] left-0 pointer-events-none  bg-gradient-to-b from-background to-white" />
         <AboutSection />
         <ContactSection />
       </main>

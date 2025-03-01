@@ -177,7 +177,49 @@
   .animate-scroll-horizontal {
     animation: scrollHorizontal var(--scroll-duration, 10s) linear infinite;
   }
+}
 
+/* Custom scrollbar with right margin - Add this to your globals.css */
+.custom-scrollbar {
+  /* Add padding to the right side of the container */
+  padding-right: 8px;
+  /* Firefox specific styles */
+  scrollbar-color: var(--prime) transparent;
+}
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
 
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--prime);
+  border-radius: 20px;
+}
+
+/* Alternative approach if the padding affects your layout */
+.custom-scrollbar-alt {
+  position: relative;
+  scrollbar-color: var(--prime) transparent;
+}
+
+.custom-scrollbar-alt::-webkit-scrollbar {
+  width: 4px;
+  /* Position the scrollbar 8px from the right edge */
+  right: 8px;
+  position: absolute;
+}
+
+.custom-scrollbar-alt::-webkit-scrollbar-track {
+  background: transparent;
+  margin-right: 8px;
+}
+
+.custom-scrollbar-alt::-webkit-scrollbar-thumb {
+  background-color: var(--prime);
+  border-radius: 20px;
+  margin-right: 8px;
 }
