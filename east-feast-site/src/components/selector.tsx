@@ -48,7 +48,7 @@ const Selector: React.FC<SelectorProps> = ({ boxNames = [], onChange }) => {
               cursor-pointer transition-all duration-300 ease-in-out
               ${index === boxNumber ? 'scale-110 text-gradient' : ''}
             `}
-                        style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
+                        style={{ fontSize: 'clamp(16px, 2.5vw, 26px)' }}
                     >
                         {boxName}
                     </div>
