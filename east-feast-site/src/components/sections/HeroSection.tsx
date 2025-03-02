@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
     return (
         <section
             id="section1"
-            className="relative min-h-[500px] md:min-h-[750px] max-h-[1000px] w-full overflow-x-hidden flex flex-col justify-start items-center bg-background px-4 sm:px-6 -mt-1"
+            className="relative min-h-[500px] md:min-h-[750px] max-h-[1000px] w-full overflow-hidden flex flex-col justify-start items-center bg-background px-4 sm:px-6 -mt-1"
         >
             <div className="w-full h-full flex flex-col sm:flex-row justify-center sm:justify-start items-center max-w-[1080px] -mt-6 sm:mt-0">
                 {/* Hero section */}
